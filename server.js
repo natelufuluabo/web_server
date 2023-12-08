@@ -11,7 +11,7 @@ const server = net.createServer((socket) => {
     const firstLine = requestLines[0];
     const [method, path] = firstLine.split(' ');
 
-    const response = `HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\n\r\nRequested Path: ${path}\n`;
+    const response = `HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nRequested Path: ${path}\n`;
     socket.write(response);
 
     // Close the socket when done
