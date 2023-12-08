@@ -1,9 +1,10 @@
 import net from 'net';
+import fs from 'fs/promises';
 
 const server = net.createServer((socket) => {
   console.log('Client connected');
 
-  socket.on('data', (data) => {
+  socket.on('data', async (data) => {
     const requestData = data.toString();
     const requestLines = requestData.split('\r\n');
 
@@ -11,8 +12,22 @@ const server = net.createServer((socket) => {
     const firstLine = requestLines[0];
     const [method, path] = firstLine.split(' ');
 
-    const response = `HTTP/1.1 200 OK\r\nContent-Type: text/plain\r\nRequested Path: ${path}\n`;
-    socket.write(response);
+    const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/html`;
+    const errorHeader = `HTTP/1.1 404 Not Found\r\nContent-Type: text/plain`;
+    
+    if (path === '/' || path === '/index.html') {
+      try {
+        const payload = await fs.readFile('./www/index.html', 'utf8');
+        const contentLength = Buffer.byteLength(payload, 'utf8');
+        const response = `${successHeader}\r\nContent-Length: ${contentLength}\r\n\r\n${payload}`;
+        socket.write(response);
+      } catch (error) {
+        console.error(error);
+        socket.write(errorHeader);
+      }
+    } else {
+      socket.write(errorHeader);
+    }
 
     // Close the socket when done
     socket.end();
