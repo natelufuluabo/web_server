@@ -1,5 +1,6 @@
 import net from 'net';
 import fs from 'fs/promises';
+import { router } from './router.js';
 
 const server = net.createServer((socket) => {
   console.log('Client connected');
@@ -12,22 +13,24 @@ const server = net.createServer((socket) => {
     const firstLine = requestLines[0];
     const [method, path] = firstLine.split(' ');
 
-    const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/html`;
-    const errorHeader = `HTTP/1.1 404 Not Found\r\nContent-Type: text/plain`;
+    router(method, path);
+
+    // const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/html`;
+    // const errorHeader = `HTTP/1.1 404 Not Found\r\nContent-Type: text/plain`;
     
-    if (path === '/' || path === '/index.html') {
-      try {
-        const payload = await fs.readFile('./www/index.html', 'utf8');
-        const contentLength = Buffer.byteLength(payload, 'utf8');
-        const response = `${successHeader}\r\nContent-Length: ${contentLength}\r\n\r\n${payload}`;
-        socket.write(response);
-      } catch (error) {
-        console.error(error);
-        socket.write(errorHeader);
-      }
-    } else {
-      socket.write(errorHeader);
-    }
+    // if (path === '/' || path === '/index.html') {
+    //   try {
+    //     const payload = await fs.readFile('./www/index.html', 'utf8');
+    //     const contentLength = Buffer.byteLength(payload, 'utf8');
+    //     const response = `${successHeader}\r\nContent-Length: ${contentLength}\r\n\r\n${payload}`;
+    //     socket.write(response);
+    //   } catch (error) {
+    //     console.error(error);
+    //     socket.write(errorHeader);
+    //   }
+    // } else {
+    //   socket.write(errorHeader);
+    // }
 
     // Close the socket when done
     socket.end();
