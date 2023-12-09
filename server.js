@@ -1,5 +1,4 @@
 import net from 'net';
-import fs from 'fs/promises';
 import { router } from './router.js';
 
 const server = net.createServer((socket) => {
@@ -13,15 +12,16 @@ const server = net.createServer((socket) => {
     const firstLine = requestLines[0];
     const [method, path] = firstLine.split(' ');
 
-    router(method, path);
+    const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
+    const errorHeader = `HTTP/1.1 404 Not Found\r\nContent-Type: text/plain`;
+    const contentLength = Buffer.byteLength(router(method, path), 'utf8');
 
-    // const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/html`;
-    // const errorHeader = `HTTP/1.1 404 Not Found\r\nContent-Type: text/plain`;
-    
+    const response = `${successHeader}\r\nContent-Length: ${contentLength}\r\n\r\n${router(method, path)}`;
+
+    socket.write(response);
     // if (path === '/' || path === '/index.html') {
     //   try {
     //     const payload = await fs.readFile('./www/index.html', 'utf8');
-    //     const contentLength = Buffer.byteLength(payload, 'utf8');
     //     const response = `${successHeader}\r\nContent-Length: ${contentLength}\r\n\r\n${payload}`;
     //     socket.write(response);
     //   } catch (error) {

@@ -1,19 +1,19 @@
-import fs from 'fs/promises';
+import { getRessources, createRessources, updateRessources, deleteRessources } from "./utils.js"
 
 export function router(method, path) {
     console.log(`${method} request made at path ${path}`)
-    // switch (method) {
-    //     case 'POST':
-    //         return 'POST method used'
+    switch (method) {
+        case 'POST':
+            return createRessources();
         
-    //     case 'PUT':
-    //         return 'PUT method used'
+        case 'PUT':
+            return updateRessources();
         
-    //     case 'DELETE':
-    //         return 'POST method used'
+        case 'DELETE':
+            return deleteRessources()
         
-    //     default :
-    //         return 'GET method used'
+        default :
+            return getRessources();
         
-    // }
+    }
 }
