@@ -13,3 +13,10 @@ export function updateRessources() {
 export function deleteRessources() {
     return 'ressources deleted';
 }
+
+export function routeValidator(route) {
+    const routes = ['/', '/author', '/genre', '/book', '/bookinstance'];
+
+    if (routes.includes(route)) return true;
+    return false;
+}

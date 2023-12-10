@@ -1,5 +1,6 @@
 import net from 'net';
 import { router } from './router.js';
+import { routeValidator } from './utils.js';
 
 const server = net.createServer((socket) => {
   console.log('Client connected');
@@ -12,28 +13,28 @@ const server = net.createServer((socket) => {
     const firstLine = requestLines[0];
     const [method, path] = firstLine.split(' ');
 
-    const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
-    const errorHeader = `HTTP/1.1 404 Not Found\r\nContent-Type: text/plain`;
-    const contentLength = Buffer.byteLength(router(method, path), 'utf8');
+    if (path === '/') {
+      const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
+      socket.write(successHeader);
+      socket.end();
+    } else {
+      const pathSegments = path.split('/');
+      if (routeValidator(`/${pathSegments[1]}`)) {
+        const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
+        socket.write(successHeader);
+        socket.end();
+      } else {
+        const errorHeader = `HTTP/1.1 404 Not Found\r\nContent-Type: text/plain`;
+        socket.write(errorHeader);
+        socket.end();
+      }
+    }
 
-    const response = `${successHeader}\r\nContent-Length: ${contentLength}\r\n\r\n${router(method, path)}`;
 
-    socket.write(response);
-    // if (path === '/' || path === '/index.html') {
-    //   try {
-    //     const payload = await fs.readFile('./www/index.html', 'utf8');
-    //     const response = `${successHeader}\r\nContent-Length: ${contentLength}\r\n\r\n${payload}`;
-    //     socket.write(response);
-    //   } catch (error) {
-    //     console.error(error);
-    //     socket.write(errorHeader);
-    //   }
-    // } else {
-    //   socket.write(errorHeader);
-    // }
+    // const contentLength = Buffer.byteLength(router(method, path), 'utf8');
 
-    // Close the socket when done
-    socket.end();
+    // const response = `${successHeader}\r\nContent-Length: ${contentLength}\r\n\r\n${router(method, path)}`;
+
   });
 
   socket.on('end', () => {
