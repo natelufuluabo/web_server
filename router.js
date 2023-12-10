@@ -1,19 +1,24 @@
 import { getRessources, createRessources, updateRessources, deleteRessources } from "./utils.js"
 
 export function router(method, path) {
-    console.log(`${method} request made at path ${path}`)
-    switch (method) {
-        case 'POST':
-            return createRessources();
-        
-        case 'PUT':
-            return updateRessources();
-        
-        case 'DELETE':
-            return deleteRessources()
-        
-        default :
-            return getRessources();
-        
+    if (path.includes('/author')) {
+        // call author controller then return 
+        console.log('author controller will be called');
+        return 
+    }
+    if (path.includes('/genre')) {
+        // call genre controller then return 
+        console.log('genre controller will be called');
+        return 
+    }
+    if (path.includes('/book')) {
+        // call book controller then return 
+        console.log('book controller will be called');
+        return 
+    }
+    if (path.includes('/bookinstance')) {
+        // call bookinstance controller then return 
+        console.log('bookinstance controller will be called');
+        return 
     }
 }

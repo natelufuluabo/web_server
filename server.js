@@ -25,6 +25,7 @@ const server = net.createServer((socket) => {
       const pathSegments = path.split('/');
       if (routeValidator(`/${pathSegments[1]}`)) {
         const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
+        router(method, path);
         socket.write(successHeader);
         socket.end();
       } else {
