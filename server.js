@@ -1,4 +1,5 @@
 import net from 'net';
+import fs from 'fs/promises';
 import { router } from './router.js';
 import { routeValidator } from './utils.js';
 
@@ -14,8 +15,11 @@ const server = net.createServer((socket) => {
     const [method, path] = firstLine.split(' ');
 
     if (path === '/') {
-      const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
-      socket.write(successHeader);
+      const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/html`;
+      const fileContent = await fs.readFile('./www/index.html', 'utf8');
+      const contentLength = Buffer.byteLength(fileContent, 'utf8');
+      const response = `${successHeader}\r\nContent-Length: ${contentLength}\r\n\r\n${fileContent}`;
+      socket.write(response);
       socket.end();
     } else {
       const pathSegments = path.split('/');
@@ -29,12 +33,6 @@ const server = net.createServer((socket) => {
         socket.end();
       }
     }
-
-
-    // const contentLength = Buffer.byteLength(router(method, path), 'utf8');
-
-    // const response = `${successHeader}\r\nContent-Length: ${contentLength}\r\n\r\n${router(method, path)}`;
-
   });
 
   socket.on('end', () => {
