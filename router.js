@@ -14,10 +14,10 @@ export function router(method, path) {
     }
     if (path.includes('/book')) {
         // call book controller then return 
-        return bookinstanceDispatcher(method, path);
+        return bookDispatcher(method, path);
     }
     if (path.includes('/bookinstance')) {
         // call bookinstance controller then return 
-        return bookDispatcher(method, path);    
+        return bookinstanceDispatcher(method, path);    
     }
 }
