@@ -1,15 +1,15 @@
 import net from 'net';
 import fs from 'fs/promises';
 import { router } from './router.js';
-import { routeValidator } from './utils.js';
+import { routeValidator, bodyParser } from './utils.js';
 
 const server = net.createServer((socket) => {
   console.log('Client connected');
 
   socket.on('data', async (data) => {
     const requestData = data.toString();
-    console.log(requestData);
     const requestLines = requestData.split('\r\n');
+    console.log(bodyParser(requestLines));
 
     // Assuming the first line of the HTTP request contains the method and path
     const firstLine = requestLines[0];
