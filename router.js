@@ -8,16 +8,16 @@ export function router(method, path) {
         // call author controller then return 
         return authorDispatcher(method, path);
     }
-    if (path.includes('/genre')) {
+    else if (path.includes('/genre')) {
         // call genre controller then return 
         return genreDispatcher(method, path); 
     }
-    if (path.includes('/book')) {
-        // call book controller then return 
-        return bookDispatcher(method, path);
-    }
-    if (path.includes('/bookinstance')) {
+    else if (path.includes('/bookinstance')) {
         // call bookinstance controller then return 
         return bookinstanceDispatcher(method, path);    
+    }
+    else if (path.includes('/book')) {
+        // call book controller then return 
+        return bookDispatcher(method, path);
     }
 }
