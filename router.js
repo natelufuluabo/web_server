@@ -1,24 +1,27 @@
-import { getRessources, createRessources, updateRessources, deleteRessources } from "./utils.js"
+import { authorDispatcher } from "./controllers/author.js";
+import { bookDispatcher } from "./controllers/book.js";
+import { bookinstanceDispatcher } from "./controllers/bookinstance.js";
+import { genreDispatcher } from "./controllers/genre.js";
 
 export function router(method, path) {
     if (path.includes('/author')) {
         // call author controller then return 
-        console.log('author controller will be called');
+        authorDispatcher(method, path);
         return 
     }
     if (path.includes('/genre')) {
         // call genre controller then return 
-        console.log('genre controller will be called');
+        genreDispatcher(method, path);
         return 
     }
     if (path.includes('/book')) {
         // call book controller then return 
-        console.log('book controller will be called');
+        bookinstanceDispatcher(method, path);
         return 
     }
     if (path.includes('/bookinstance')) {
         // call bookinstance controller then return 
-        console.log('bookinstance controller will be called');
+        bookDispatcher(method, path);
         return 
     }
 }
