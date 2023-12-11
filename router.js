@@ -6,22 +6,18 @@ import { genreDispatcher } from "./controllers/genre.js";
 export function router(method, path) {
     if (path.includes('/author')) {
         // call author controller then return 
-        authorDispatcher(method, path);
-        return 
+        return authorDispatcher(method, path);
     }
     if (path.includes('/genre')) {
         // call genre controller then return 
-        genreDispatcher(method, path);
-        return 
+        return genreDispatcher(method, path); 
     }
     if (path.includes('/book')) {
         // call book controller then return 
-        bookinstanceDispatcher(method, path);
-        return 
+        return bookinstanceDispatcher(method, path);
     }
     if (path.includes('/bookinstance')) {
         // call bookinstance controller then return 
-        bookDispatcher(method, path);
-        return 
+        return bookDispatcher(method, path);    
     }
 }

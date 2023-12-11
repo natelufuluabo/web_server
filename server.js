@@ -25,8 +25,10 @@ const server = net.createServer((socket) => {
       const pathSegments = path.split('/');
       if (routeValidator(`/${pathSegments[1]}`)) {
         const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
-        router(method, path);
-        socket.write(successHeader);
+        const content = router(method, path);
+        const response = `${successHeader}\r\n\r\n${content}`;
+        console.log(response);
+        socket.write(response);
         socket.end();
       } else {
         const errorHeader = `HTTP/1.1 404 Not Found\r\nContent-Type: text/plain`;
