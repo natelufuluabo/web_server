@@ -8,6 +8,7 @@ const server = net.createServer((socket) => {
 
   socket.on('data', async (data) => {
     const requestData = data.toString();
+    console.log(requestData);
     const requestLines = requestData.split('\r\n');
 
     // Assuming the first line of the HTTP request contains the method and path
@@ -27,7 +28,6 @@ const server = net.createServer((socket) => {
         const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
         const content = router(method, path);
         const response = `${successHeader}\r\n\r\n${content}`;
-        console.log(response);
         socket.write(response);
         socket.end();
       } else {
