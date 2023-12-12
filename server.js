@@ -1,7 +1,7 @@
 import net from 'net';
 import fs from 'fs/promises';
 import { router } from './router.js';
-import { routeValidator, bodyParser } from './utils.js';
+import { routeValidator, bodyParser, queryParser } from './utils.js';
 
 const server = net.createServer((socket) => {
   console.log('Client connected');
@@ -14,6 +14,7 @@ const server = net.createServer((socket) => {
     // Assuming the first line of the HTTP request contains the method and path
     const firstLine = requestLines[0];
     const [method, path] = firstLine.split(' ');
+    console.log(queryParser(path));
 
     if (path === '/') {
       const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/html`;

@@ -1,5 +1,5 @@
-export function routeValidator(route) {
-    const routeWithoutQuery = route.split('?')[0];
+export function routeValidator(path) {
+    const routeWithoutQuery = path.split('?')[0];
     const routes = ['/', '/author', '/genre', '/book', '/bookinstance'];
 
     if (routes.includes(routeWithoutQuery)) return true;
@@ -12,4 +12,15 @@ export function bodyParser(data) {
             return JSON.parse(data.slice(i+1)[0]);
         } else return
     }
+}
+
+export function queryParser(path) {
+    const queryString = path.split('?')[1];
+    const queryParams = queryString.split('&');
+    let queryObject = {}
+    for(let i = 0; i < queryParams.length; i++) {
+        const kv = queryParams[i].split("=");
+        queryObject[kv[0]] = kv[1]
+    }
+    return queryObject
 }
