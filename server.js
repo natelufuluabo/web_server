@@ -34,8 +34,10 @@ const server = net.createServer((socket) => {
         socket.write(response);
         socket.end();
       } else {
-        const errorHeader = `HTTP/1.1 404 Not Found\r\nContent-Type: text/plain`;
-        socket.write(errorHeader);
+        const errorHeader = `HTTP/1.1 404 Not Found\r\nContent-Type: application/json`;
+        const body = JSON.stringify({ message: 'Invalid URL. Endpoint does not exist' });
+        const response = `${errorHeader}\r\n\r\n${body}`;
+        socket.write(response);
         socket.end();
       }
     }
