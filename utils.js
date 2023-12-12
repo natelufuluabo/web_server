@@ -10,8 +10,9 @@ export function bodyParser(data) {
     for(let i = 0; i < data.length; i++) {
         if (data[i] === '' && i !== data.length - 1) {
             return JSON.parse(data.slice(i+1)[0]);
-        } else return
+        }
     }
+    return
 }
 
 export function queryParser(path) {
@@ -24,4 +25,9 @@ export function queryParser(path) {
         queryObject = { ...queryObject, [kv[0]]: kv[1] }
     }
     return queryObject
+}
+
+export function idParser(path) {
+    if (path.split('/').length === 3) return path.split('/')[2];
+    return 
 }

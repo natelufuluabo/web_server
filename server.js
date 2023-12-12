@@ -1,7 +1,7 @@
 import net from 'net';
 import fs from 'fs/promises';
 import { router } from './router.js';
-import { routeValidator, bodyParser, queryParser } from './utils.js';
+import { routeValidator, bodyParser, queryParser, idParser } from './utils.js';
 
 const server = net.createServer((socket) => {
   console.log('Client connected');
@@ -9,12 +9,10 @@ const server = net.createServer((socket) => {
   socket.on('data', async (data) => {
     const requestData = data.toString();
     const requestLines = requestData.split('\r\n');
-    // console.log(bodyParser(requestLines));
 
     // Assuming the first line of the HTTP request contains the method and path
     const firstLine = requestLines[0];
     const [method, path] = firstLine.split(' ');
-    console.log(queryParser(path));
 
     if (path === '/') {
       const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/html`;
@@ -24,8 +22,12 @@ const server = net.createServer((socket) => {
       socket.write(response);
       socket.end();
     } else {
-      const pathSegments = path.split('/');
-      if (routeValidator(`/${pathSegments[1]}`)) {
+      if (routeValidator(`/${path.split('/')[1]}`)) {
+        const requestObject = {
+          id: idParser(path),
+          query: queryParser(path),
+          body: bodyParser(requestLines)
+        }
         const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
         const content = router(method, path);
         const response = `${successHeader}\r\n\r\n${content}`;
