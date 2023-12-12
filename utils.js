@@ -15,12 +15,13 @@ export function bodyParser(data) {
 }
 
 export function queryParser(path) {
+    if (!path.includes('?')) return 
     const queryString = path.split('?')[1];
     const queryParams = queryString.split('&');
     let queryObject = {}
     for(let i = 0; i < queryParams.length; i++) {
         const kv = queryParams[i].split("=");
-        queryObject[kv[0]] = kv[1]
+        queryObject = { ...queryObject, [kv[0]]: kv[1] }
     }
     return queryObject
 }
