@@ -1,29 +1,29 @@
-export function genreDispatcher(method, path) {
+export function genreDispatcher(method, requestObject) {
     // Call the appropriate function based on method and path received
     switch (method) {
         case 'POST':
-            return createRessources();
+            return createRessources(requestObject);
         case 'PUT':
-            return updateRessources();
+            return updateRessources(requestObject);
         case 'DELETE':
-            return deleteRessources();
+            return deleteRessources(requestObject);
         default:
-            return getRessources();
+            return getRessources(requestObject);
     }
 }
 
-function getRessources() {
+function getRessources(requestObject) {
     return 'genre ressources retrieved';
 }
 
-function createRessources() {
+function createRessources(requestObject) {
     return 'genre ressources created';
 }
 
-function updateRessources() {
+function updateRessources(requestObject) {
     return 'genre ressources updated';
 }
 
-function deleteRessources() {
+function deleteRessources(requestObject) {
     return 'genre ressources deleted';
 }

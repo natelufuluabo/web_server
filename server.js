@@ -29,7 +29,7 @@ const server = net.createServer((socket) => {
           body: bodyParser(requestLines)
         }
         const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
-        const content = router(method, path);
+        const content = router(method, path, requestObject);
         const response = `${successHeader}\r\n\r\n${content}`;
         socket.write(response);
         socket.end();

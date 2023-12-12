@@ -1,29 +1,29 @@
-export function bookDispatcher(method, path) {
+export function bookDispatcher(method, requestObject) {
     // Call the appropriate function based on method and path received
     switch (method) {
         case 'POST':
-            return createRessources();
+            return createRessources(requestObject);
         case 'PUT':
-            return updateRessources();
+            return updateRessources(requestObject);
         case 'DELETE':
-            return deleteRessources();
+            return deleteRessources(requestObject);
         default:
-            return getRessources();
+            return getRessources(requestObject);
     }
 }
 
-function getRessources() {
+function getRessources(requestObject) {
     return 'book ressources retrieved';
 }
 
-function createRessources() {
+function createRessources(requestObject) {
     return 'book ressources created';
 }
 
-function updateRessources() {
+function updateRessources(requestObject) {
     return 'book ressources updated';
 }
 
-function deleteRessources() {
+function deleteRessources(requestObject) {
     return 'book ressources deleted';
 }
