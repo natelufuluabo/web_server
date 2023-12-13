@@ -34,20 +34,20 @@ export function idParser(path) {
     return 
 }
 
-export function generateSuccessReponse(statusCode, data) {
+function generateSuccessReponse(statusCode, data) {
     const successHeader = `HTTP/1.1 ${statusCode} OK\r\nContent-Type: application/json`;
     const body = JSON.stringify(data)
     return `${successHeader}\r\n\r\n${body}`;
 }
 
-export function generateErrorResponse(statusCode, data) {
+function generateErrorResponse(statusCode, data) {
     const errorHeader = `HTTP/1.1 ${statusCode}\r\nContent-Type: application/json`;
     const body = JSON.stringify(data);
     const response = `${errorHeader}\r\n\r\n${body}`;
     return response;
 }
 
-export async function fetchData(fileName) {
+async function fetchData(fileName) {
     try {
         const data = await fs.readFile(`./data/${fileName}.json`, 'utf8');
         
@@ -58,4 +58,16 @@ export async function fetchData(fileName) {
         console.log('Error reading JSON file:', error)
         return { statusCode: 500, payload: { message: 'Internal Server Error' }};
     }
+}
+
+export async function getRessources(requestObject, fileName) {
+    const { statusCode, payload } = await fetchData(fileName);
+    if (statusCode === 500) {
+        return generateErrorResponse(statusCode, payload);
+    }
+    if (requestObject.id !== undefined) {
+        const genre = payload.find(item => item.id === Number(requestObject.id));
+        return generateSuccessReponse(statusCode, genre);
+    }
+    return generateSuccessReponse(statusCode, payload);
 }

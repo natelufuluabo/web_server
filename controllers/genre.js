@@ -1,6 +1,7 @@
-import { generateSuccessReponse, generateErrorResponse, fetchData } from "../utils.js";
+import { getRessources } from "../utils.js";
 
 export async function genreDispatcher(method, requestObject) {
+    const fileName = 'genre';
     // Call the appropriate function based on method and path received
     switch (method) {
         case 'POST':
@@ -10,20 +11,8 @@ export async function genreDispatcher(method, requestObject) {
         case 'DELETE':
             return deleteRessources(requestObject);
         default:
-            return getRessources(requestObject);
+            return getRessources(requestObject, fileName);
     }
-}
-
-async function getRessources(requestObject) {
-    const { statusCode, payload } = await fetchData('genre');
-    if (statusCode === 500) {
-        return generateErrorResponse(statusCode, payload);
-    }
-    if (requestObject.id !== undefined) {
-        const genre = payload.find(item => item.id === Number(requestObject.id));
-        return generateSuccessReponse(statusCode, genre);
-    }
-    return generateSuccessReponse(statusCode, payload);
 }
 
 function createRessources(requestObject) {

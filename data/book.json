@@ -1,0 +1,237 @@
+{
+    "data": [
+      {
+        "id": 1,
+        "title": "Purple Hibiscus",
+        "author": "Chimamanda Ngozi Adichie",
+        "genre": "Fiction",
+        "published_year": 2003
+      },
+      {
+        "id": 2,
+        "title": "Half of a Yellow Sun",
+        "author": "Chimamanda Ngozi Adichie",
+        "genre": "Historical Fiction",
+        "published_year": 2006
+      },
+      {
+        "id": 3,
+        "title": "Norwegian Wood",
+        "author": "Haruki Murakami",
+        "genre": "Contemporary Fiction",
+        "published_year": 1987
+      },
+      {
+        "id": 4,
+        "title": "1Q84",
+        "author": "Haruki Murakami",
+        "genre": "Science Fiction",
+        "published_year": 2009
+      },
+      {
+        "id": 5,
+        "title": "Harry Potter and the Sorcerer's Stone",
+        "author": "J.K. Rowling",
+        "genre": "Fantasy",
+        "published_year": 1997
+      },
+      {
+        "id": 6,
+        "title": "Things Fall Apart",
+        "author": "Chinua Achebe",
+        "genre": "Historical Fiction",
+        "published_year": 1958
+      },
+      {
+        "id": 7,
+        "title": "The House of the Spirits",
+        "author": "Isabel Allende",
+        "genre": "Magical Realism",
+        "published_year": 1982
+      },
+      {
+        "id": 8,
+        "title": "Petals of Blood",
+        "author": "Ngũgĩ wa Thiong'o",
+        "genre": "Political Fiction",
+        "published_year": 1977
+      },
+      {
+        "id": 9,
+        "title": "Beloved",
+        "author": "Toni Morrison",
+        "genre": "Historical Fiction",
+        "published_year": 1987
+      },
+      {
+        "id": 10,
+        "title": "One Hundred Years of Solitude",
+        "author": "Gabriel García Márquez",
+        "genre": "Magical Realism",
+        "published_year": 1967
+      },
+      {
+        "id": 11,
+        "title": "The Namesake",
+        "author": "Jhumpa Lahiri",
+        "genre": "Contemporary Fiction",
+        "published_year": 2003
+      },
+      {
+        "id": 12,
+        "title": "Sapiens: A Brief History of Humankind",
+        "author": "Yuval Noah Harari",
+        "genre": "Non-Fiction",
+        "published_year": 2011
+      },
+          {
+            "id": 13,
+            "title": "Americanah",
+            "author": "Chimamanda Ngozi Adichie",
+            "genre": "Contemporary Fiction",
+            "published_year": 2013
+          },
+          {
+            "id": 14,
+            "title": "Kafka on the Shore",
+            "author": "Haruki Murakami",
+            "genre": "Magical Realism",
+            "published_year": 2002
+          },
+          {
+            "id": 15,
+            "title": "The Wind-Up Bird Chronicle",
+            "author": "Haruki Murakami",
+            "genre": "Surreal Fiction",
+            "published_year": 1994
+          },
+          {
+            "id": 16,
+            "title": "The Casual Vacancy",
+            "author": "J.K. Rowling",
+            "genre": "Drama",
+            "published_year": 2012
+          },
+          {
+            "id": 17,
+            "title": "Arrow of God",
+            "author": "Chinua Achebe",
+            "genre": "Historical Fiction",
+            "published_year": 1964
+          },
+          {
+            "id": 18,
+            "title": "Eva Luna",
+            "author": "Isabel Allende",
+            "genre": "Magical Realism",
+            "published_year": 1987
+          },
+          {
+            "id": 19,
+            "title": "Wizard of the Crow",
+            "author": "Ngũgĩ wa Thiong'o",
+            "genre": "Satirical Fiction",
+            "published_year": 2006
+          },
+          {
+            "id": 20,
+            "title": "Song of Solomon",
+            "author": "Toni Morrison",
+            "genre": "Magical Realism",
+            "published_year": 1977
+          },
+          {
+            "id": 21,
+            "title": "Love in the Time of Cholera",
+            "author": "Gabriel García Márquez",
+            "genre": "Romance",
+            "published_year": 1985
+          },
+          {
+            "id": 22,
+            "title": "The Lowland",
+            "author": "Jhumpa Lahiri",
+            "genre": "Historical Fiction",
+            "published_year": 2013
+          },
+          {
+            "id": 23,
+            "title": "21 Lessons for the 21st Century",
+            "author": "Yuval Noah Harari",
+            "genre": "Non-Fiction",
+            "published_year": 2018
+          },
+          {
+            "id": 24,
+            "title": "Purple Hibiscus",
+            "author": "Chimamanda Ngozi Adichie",
+            "genre": "Fiction",
+            "published_year": 2003
+          },
+          {
+            "id": 25,
+            "title": "Killing Commendatore",
+            "author": "Haruki Murakami",
+            "genre": "Mystery",
+            "published_year": 2017
+          },
+          {
+            "id": 26,
+            "title": "The Silkworm",
+            "author": "J.K. Rowling (as Robert Galbraith)",
+            "genre": "Mystery",
+            "published_year": 2014
+          },
+          {
+            "id": 27,
+            "title": "Anthills of the Savannah",
+            "author": "Chinua Achebe",
+            "genre": "Political Fiction",
+            "published_year": 1987
+          },
+          {
+            "id": 28,
+            "title": "Portrait in Sepia",
+            "author": "Isabel Allende",
+            "genre": "Historical Fiction",
+            "published_year": 2000
+          },
+          {
+            "id": 29,
+            "title": "The River Between",
+            "author": "Ngũgĩ wa Thiong'o",
+            "genre": "Historical Fiction",
+            "published_year": 1965
+          },
+          {
+            "id": 30,
+            "title": "Tar Baby",
+            "author": "Toni Morrison",
+            "genre": "Magical Realism",
+            "published_year": 1981
+          },
+          {
+            "id": 31,
+            "title": "Chronicle of a Death Foretold",
+            "author": "Gabriel García Márquez",
+            "genre": "Mystery",
+            "published_year": 1981
+          },
+          {
+            "id": 32,
+            "title": "The Interpreter of Maladies",
+            "author": "Jhumpa Lahiri",
+            "genre": "Short Stories",
+            "published_year": 1999
+          },
+          {
+            "id": 33,
+            "title": "Homo Deus: A Brief History of Tomorrow",
+            "author": "Yuval Noah Harari",
+            "genre": "Non-Fiction",
+            "published_year": 2015
+          }
+      
+    ]
+  }
+  
