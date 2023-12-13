@@ -30,7 +30,7 @@ export function queryParser(path) {
 }
 
 export function idParser(path) {
-    if (path.split('/').length === 3) return path.split('/')[2];
+    if (path.split('/').length === 3 && path.split('/')[2] !== '') return path.split('/')[2];
     return 
 }
 
@@ -51,7 +51,7 @@ export async function fetchData(fileName) {
     try {
         console.log('Current working directory:', process.cwd());
         const data = await fs.readFile(`./data/${fileName}.json`, 'utf8');
-
+        
         const jsonData = JSON.parse(data).data;
 
         return { statusCode: 200, payload: jsonData }

@@ -20,7 +20,7 @@ async function getRessources(requestObject) {
         return generateErrorResponse(statusCode, payload);
     }
     if (requestObject.id !== undefined) {
-        const genre = payload.find(item => item.id === requestObject.id);
+        const genre = payload.find(item => item.id === Number(requestObject.id));
         return generateSuccessReponse(statusCode, genre);
     }
     return generateSuccessReponse(statusCode, payload);
