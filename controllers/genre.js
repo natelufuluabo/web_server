@@ -1,5 +1,4 @@
-import fs from 'fs/promises';
-import { generateSuccessReponse, generateErrorResponse } from "../utils.js";
+import { generateSuccessReponse, generateErrorResponse, fetchData } from "../utils.js";
 
 export async function genreDispatcher(method, requestObject) {
     // Call the appropriate function based on method and path received
@@ -16,30 +15,15 @@ export async function genreDispatcher(method, requestObject) {
 }
 
 async function getRessources(requestObject) {
+    const { statusCode, payload } = await fetchData('genre');
+    if (statusCode === 500) {
+        return generateErrorResponse(statusCode, payload);
+    }
     if (requestObject.id !== undefined) {
-        try {
-            const data = await fs.readFile('../data/genre.json', 'utf8');
-    
-            const jsonData = JSON.parse(data);
-
-            const genre = jsonData.find(item => item.id === requestObject.id)
-
-            return generateSuccessReponse(200, genre);
-        } catch (error) {
-            console.log('Error reading JSON file:', error)
-            return generateErrorResponse(500, { message: 'Error reading JSON file' });
-        }
+        const genre = payload.find(item => item.id === requestObject.id);
+        return generateSuccessReponse(statusCode, genre);
     }
-    try {
-        const data = await fs.readFile('../data/genre.json', 'utf8');
-
-        const jsonData = JSON.parse(data);
-
-        return generateSuccessReponse(200, jsonData);
-    } catch (error) {
-        console.log('Error reading JSON file:', error)
-        return generateErrorResponse(500, { message: 'Error reading JSON file' });
-    }
+    return generateSuccessReponse(statusCode, payload);
 }
 
 function createRessources(requestObject) {

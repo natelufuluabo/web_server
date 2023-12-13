@@ -1,3 +1,5 @@
+import fs from 'fs/promises';
+
 export function routeValidator(path) {
     const routeWithoutQuery = path.split('?')[0];
     const routes = ['/', '/author', '/genre', '/book', '/bookinstance'];
@@ -7,12 +9,12 @@ export function routeValidator(path) {
 }
 
 export function bodyParser(data) {
+    if (data[data.length - 1] === '') return
     for(let i = 0; i < data.length; i++) {
-        if (data[i] === '' && i !== data.length - 1) {
+        if (data[i] === '') {
             return JSON.parse(data.slice(i+1)[0]);
         }
     }
-    return
 }
 
 export function queryParser(path) {
@@ -43,4 +45,18 @@ export function generateErrorResponse(statusCode, data) {
     const body = JSON.stringify(data);
     const response = `${errorHeader}\r\n\r\n${body}`;
     return response;
+}
+
+export async function fetchData(fileName) {
+    try {
+        console.log('Current working directory:', process.cwd());
+        const data = await fs.readFile(`./data/${fileName}.json`, 'utf8');
+
+        const jsonData = JSON.parse(data).data;
+
+        return { statusCode: 200, payload: jsonData }
+    } catch (error) {
+        console.log('Error reading JSON file:', error)
+        return { statusCode: 500, payload: { message: 'Internal Server Error' }};
+    }
 }
