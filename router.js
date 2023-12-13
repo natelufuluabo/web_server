@@ -3,14 +3,14 @@ import { bookDispatcher } from "./controllers/book.js";
 import { bookinstanceDispatcher } from "./controllers/bookinstance.js";
 import { genreDispatcher } from "./controllers/genre.js";
 
-export function router(method, path, requestObject) {
+export async function router(method, path, requestObject) {
     if (path.includes('/author')) {
         // call author controller then return 
         return authorDispatcher(method, requestObject);
     }
     else if (path.includes('/genre')) {
         // call genre controller then return 
-        return genreDispatcher(method, requestObject); 
+        return await genreDispatcher(method, requestObject); 
     }
     else if (path.includes('/bookinstance')) {
         // call bookinstance controller then return 

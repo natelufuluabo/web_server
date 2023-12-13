@@ -28,9 +28,7 @@ const server = net.createServer((socket) => {
           query: queryParser(path),
           body: bodyParser(requestLines)
         }
-        const successHeader = `HTTP/1.1 200 OK\r\nContent-Type: text/plain`;
-        const content = router(method, path, requestObject);
-        const response = `${successHeader}\r\n\r\n${content}`;
+        const response = await router(method, path, requestObject);
         socket.write(response);
         socket.end();
       } else {

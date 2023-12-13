@@ -31,3 +31,16 @@ export function idParser(path) {
     if (path.split('/').length === 3) return path.split('/')[2];
     return 
 }
+
+export function generateSuccessReponse(statusCode, data) {
+    const successHeader = `HTTP/1.1 ${statusCode} OK\r\nContent-Type: application/json`;
+    const body = JSON.stringify(data)
+    return `${successHeader}\r\n\r\n${body}`;
+}
+
+export function generateErrorResponse(statusCode, data) {
+    const errorHeader = `HTTP/1.1 ${statusCode}\r\nContent-Type: application/json`;
+    const body = JSON.stringify(data);
+    const response = `${errorHeader}\r\n\r\n${body}`;
+    return response;
+}
