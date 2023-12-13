@@ -19,6 +19,7 @@ export function bodyParser(data) {
 
 export function queryParser(path) {
     if (!path.includes('?')) return 
+    if (path.split('?')[1] === '') return
     const queryString = path.split('?')[1];
     const queryParams = queryString.split('&');
     let queryObject = {}
