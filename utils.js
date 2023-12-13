@@ -2,7 +2,7 @@ import fs from 'fs/promises';
 
 export function routeValidator(path) {
     const routeWithoutQuery = path.split('?')[0];
-    const routes = ['/', '/author', '/genre', '/book', '/bookinstance'];
+    const routes = ['/', '/author', '/genre', '/book'];
 
     if (routes.includes(routeWithoutQuery)) return true;
     return false;
@@ -49,7 +49,6 @@ export function generateErrorResponse(statusCode, data) {
 
 export async function fetchData(fileName) {
     try {
-        console.log('Current working directory:', process.cwd());
         const data = await fs.readFile(`./data/${fileName}.json`, 'utf8');
         
         const jsonData = JSON.parse(data).data;

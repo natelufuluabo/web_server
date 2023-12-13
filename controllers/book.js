@@ -1,4 +1,4 @@
-export function bookDispatcher(method, requestObject) {
+export async function bookDispatcher(method, requestObject) {
     // Call the appropriate function based on method and path received
     switch (method) {
         case 'POST':
@@ -12,7 +12,7 @@ export function bookDispatcher(method, requestObject) {
     }
 }
 
-function getRessources(requestObject) {
+async function getRessources(requestObject) {
     return 'book ressources retrieved';
 }
 

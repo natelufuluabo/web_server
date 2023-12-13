@@ -1,0 +1,75 @@
+{
+    "data": [
+        {
+            "id": 1,
+            "full_name": "Chimamanda Ngozi Adichie",
+            "origin": "Nigeria",
+            "sex": "Female",
+            "year_born": 1977
+        },
+        {
+            "id": 2,
+            "full_name": "Haruki Murakami",
+            "origin": "Japan",
+            "sex": "Male",
+            "year_born": 1949
+        },
+        {
+            "id": 3,
+            "full_name": "J.K. Rowling",
+            "origin": "United Kingdom",
+            "sex": "Female",
+            "year_born": 1965
+        },
+        {
+            "id": 4,
+            "full_name": "Chinua Achebe",
+            "origin": "Nigeria",
+            "sex": "Male",
+            "year_born": 1930
+        },
+        {
+            "id": 5,
+            "full_name": "Isabel Allende",
+            "origin": "Chile",
+            "sex": "Female",
+            "year_born": 1942
+        },
+        {
+            "id": 6,
+            "full_name": "Ngũgĩ wa Thiong'o",
+            "origin": "Kenya",
+            "sex": "Male",
+            "year_born": 1938
+        },
+        {
+            "id": 7,
+            "full_name": "Toni Morrison",
+            "origin": "United States",
+            "sex": "Female",
+            "year_born": 1931
+        },
+        {
+            "id": 8,
+            "full_name": "Gabriel García Márquez",
+            "origin": "Colombia",
+            "sex": "Male",
+            "year_born": 1927
+        },
+        {
+            "id": 9,
+            "full_name": "Jhumpa Lahiri",
+            "origin": "United States",
+            "sex": "Female",
+            "year_born": 1967
+        },
+        {
+            "id": 10,
+            "full_name": "Yuval Noah Harari",
+            "origin": "Israel",
+            "sex": "Male",
+            "year_born": 1976
+        }
+    ]
+}
+  
