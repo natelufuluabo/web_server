@@ -68,7 +68,8 @@ export async function getRessources(requestObject, fileName) {
     }
     if (requestObject.id !== undefined) {
         const genre = payload.find(item => item.id === Number(requestObject.id));
-        return generateSuccessReponse(statusCode, genre);
+        if (genre) return generateSuccessReponse(statusCode, genre);
+        return generateErrorResponse(404, { message: 'Invalid ID' })
     }
     return generateSuccessReponse(statusCode, payload);
 }
